@@ -1,0 +1,105 @@
+{% extends 'base_main.html' %}
+{% load static %}
+
+{% block extCSS %}
+    {{ block.super }}
+{#    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
+    <link rel="stylesheet" type="text/css" href="{% static '/app/market/market.css'%}" />
+{% endblock %}
+
+{% block extJS %}
+    {{ block.super }}
+    <script type="text/javascript" src="/static/app/market/market.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="market">
+
+{#    左边分类样式#}
+        <div>
+            <aside>
+                <ul>
+                   {% for foodtype in foodtypes %}
+
+                            {% ifequal typeid foodtype.typeid %}
+                                <li>
+                                    <a href="#">{{ foodtype.typename }}</a>
+                                    <span class="yellowSlide"></span>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="{% url 'axf:marketWP' foodtype.typeid 0 1%} ">{{ foodtype.typename }}</a>
+                                </li>
+                            {% endifequal %}
+
+                   {% endfor %}
+                </ul>
+            </aside>
+        </div>
+
+{#     上边分类样式#}
+        <div>
+            <nav>
+                <ul>
+                    <li id="allType"><span>全部类型<span id="allType_g" class="glyphicon glyphicon-chevron-down"></span></span></li>
+                    <li id="allsort"><span>综合排序<span id="allsort_g" class="glyphicon glyphicon-chevron-down"></span></span></li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+{#      商品数据信息#}
+
+        <div>
+            <section>
+                <menu>
+                    <ul>
+                        {% for good in goods %}
+                            <li>
+                                <a href="#"><img src="{{ good.productimg }}" alt="">
+                                    <div class="shoppingInfo">
+                                            <h6>{{ good.productlongname }}</h6>
+                                            <p class="detailTag"><span>精选</span><span>{{ good.pedesc }}</span></p>
+                                            <span class="unit">{{ good.specifics }}</span>
+                                            <p class="price">
+                                                <span>￥{{ good.price }}</span><s><span>￥{{ good.marketprice }}</span></s>
+                                            </p>
+                                    </div>
+                                </a>
+                                 <section>
+						            <button goodid="{{ good.id }}" class="subShopping">-</button>
+                                    <span >0</span>
+						            <button goodid="{{ good.id }}" class="addShopping">+</button>
+					             </section>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div id="type_container">
+                        <div>
+                            {% for childTYpe in allchildType %}
+                                 <a href="{% url 'axf:marketWP'  typeid  childTYpe.1 1%}"><span>{{ childTYpe.0 }}</span></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div id="allsortrule">
+                        <div>
+                            <a href="{% url 'axf:marketWP' typeid 0 1 %}"><span>综合排序</span></a>
+                            <a href="{% url 'axf:marketWP' typeid 0 2 %}"><span>销量排序</span></a>
+                            <a href="{% url 'axf:marketWP' typeid 0 3 %}"><span>价格最低</span></a>
+                            <a href="{% url 'axf:marketWP' typeid 0 4 %}"><span>价格最高</span></a>
+                        </div>
+                    </div>
+
+                </menu>
+
+            </section>
+        </div>
+
+
+
+
+    </div>
+{% endblock %}

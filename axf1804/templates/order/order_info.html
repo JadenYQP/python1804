@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{#{% block extJS %}#}
+{#    {{ block.super }}#}
+{#    <script type="text/javascript" src="{% static "" %}"></script>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <h5>订单号:{{ orderNumber }}</h5>
+    {# 多个商品,用ul,for循环来处理   #}
+    <ul>
+        {% for ordergood in ordergoods %}
+            <li>
+                <img src="{{ ordergood.og_goods.productimg }}" alt="">
+                <span>{{ ordergood.og_goods.productname }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <button>付款</button>
+{% endblock %}

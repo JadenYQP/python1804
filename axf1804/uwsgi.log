@@ -1,0 +1,19 @@
+*** Starting uWSGI 2.0.17.1 (64bit) on [Fri Aug  3 16:02:19 2018] ***
+compiled with version: 5.4.0 20160609 on 03 August 2018 02:39:31
+os: Linux-4.15.0-29-generic #31~16.04.1-Ubuntu SMP Wed Jul 18 08:54:04 UTC 2018
+nodename: ujaden-vm
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 2
+current working directory: /home/ujaden/django1804/axf1804
+writing pidfile to uwsgi.pid
+detected binary path: /home/ujaden/.local/virtualenvs/yqp/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/ujaden/django1804/axf1804
+your processes number limit is 11685
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8010).
+bind(): Address already in use [core/socket.c line 769]
